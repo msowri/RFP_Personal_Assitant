@@ -233,3 +233,8 @@ yarn-error.log*
 # --- OS Specific ---
 .DS_Store
 Thumbs.db
+
+#ignore custom files(localsettings)
+.pylintrc
+run.bat
+runenv.bat
