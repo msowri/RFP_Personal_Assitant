@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="container">
-      <h2 class="logo">My Vue App</h2>
+      <h2 class="logo">RFP</h2>
 
       <nav>
         <ul>
