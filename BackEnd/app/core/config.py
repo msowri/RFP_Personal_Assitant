@@ -8,7 +8,7 @@ ENV_PATH = BASE_DIR / ".env"
 class Settings(BaseSettings):
     """ FPA settings."""   
     APP_NAME: str = "RFP Personal Assistant" 
-    DATABASE_URL: Optional[str] = "postgresql://user:password@localhost/dbname" # change in future 
+    DATABASE_URL: Optional[str] = "postgresql://postgres:Gramener123@localhost:5432/rfppersonaldb" # change in future 
     SECRET_KEY: Optional[str] = "temp-secret-key" #change in future
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     model_config = {
