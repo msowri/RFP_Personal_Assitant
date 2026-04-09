@@ -12,6 +12,7 @@ class DomainObject:
     updated_by = Column(String, nullable=False, default="admin")
     is_deleted = Column(Boolean, default=False)
     is_active = Column(Boolean, default=True)
+    pagename = Column(String, nullable=True) #added for testing to verify the Dabase_URL Changes, in not required in future will remove.
 
     @declared_attr
     def __tablename__(cls) -> Any:

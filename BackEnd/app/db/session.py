@@ -1,15 +1,21 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from app.core.config import settings
+import os
+from dotenv import load_dotenv
+load_dotenv()
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-if not settings.DATABASE_URL or not settings.DATABASE_URL.startswith("postgresql"):
+print(f"Using DATABASE_URL: {DATABASE_URL}")
+
+if not DATABASE_URL or not DATABASE_URL.startswith("postgresql"):
     raise ValueError(
         "Invalid DATABASE_URL "
         "verify in environment file"
     )
 
 engine = create_engine(
-    settings.DATABASE_URL,
+    DATABASE_URL,
     pool_size=10,           
     max_overflow=20,        
     pool_timeout=30,        
