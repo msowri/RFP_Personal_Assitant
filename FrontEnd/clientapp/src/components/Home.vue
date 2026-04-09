@@ -34,27 +34,5 @@ const message = ref('Hello, Vue 3 with TypeScript!')
 function clickHandler(){
   alert("Vue + TypeScript Working!")
 }
-
 </script>
 
-<style scoped>
- div[data-msg]{
-  font-size:24px;
-  color:#42b883;
-  margin-top:20px;
-}
-.content{
-  padding:40px;
-  text-align:center;
-}
-
-button{
-  margin-top:20px;
-  padding:10px 20px;
-  background:#42b883;
-  border:none;
-  color:white;
-  cursor:pointer;
-}
-
-</style>

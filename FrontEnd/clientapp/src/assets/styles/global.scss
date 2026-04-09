@@ -1,0 +1,77 @@
+//variable.scss -created for future use
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  // background-color: #f8f9fa;
+}
+
+/* moved from app.vue   */
+
+.app-container{
+  display:flex;
+  flex-direction:column;
+  min-height:98vh;
+}
+
+.content{
+  flex:1;
+  padding:20px;
+}
+/* moved from home.vue   */
+ div[data-msg]{
+  font-size:24px;
+  color:#42b883;
+  margin-top:20px;
+}
+.content{
+  padding:40px;
+  text-align:center;
+}
+
+button{
+  margin-top:20px;
+  padding:10px 20px;
+  background:#42b883;
+  border:none;
+  color:white;
+  cursor:pointer;
+}
+/* moved from footer.vue   */
+
+.footer{
+  bottom: 0;
+  background:#2c3e50;
+  color:white;
+  text-align:center;
+  padding:15px;
+  margin-top:10px;
+}
+/* moved from header.vue   */
+.header{
+  background:#2c3e50;
+  color:white;
+  padding:3px;
+}
+
+.container{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+nav ul{
+  display:flex;
+  gap:20px;
+  list-style:none;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+}
+
+.logo{
+  font-weight:bold;
+}
+/* custom component-page styles*/

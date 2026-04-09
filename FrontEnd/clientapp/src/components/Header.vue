@@ -16,33 +16,3 @@
 <script setup lang="ts">
 </script>
 
-<style scoped>
-
-.header{
-  background:#2c3e50;
-  color:white;
-  padding:3px;
-}
-
-.container{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
-
-nav ul{
-  display:flex;
-  gap:20px;
-  list-style:none;
-}
-
-nav a{
-  color:white;
-  text-decoration:none;
-}
-
-.logo{
-  font-weight:bold;
-}
-
-</style>
