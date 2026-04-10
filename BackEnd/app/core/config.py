@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     # DATABASE_URL: Optional[str] = "postgresql://postgres:Gramener123@localhost:5432/rfppersonaldb" # change in future 
     SECRET_KEY: Optional[str] = "temp-secret-key" #change in future
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
+    UPLOAD_DIR: str = str(BASE_DIR / "uploads")
     model_config = {
         "env_file": str(ENV_PATH),
         "env_file_encoding": "utf-8", 
