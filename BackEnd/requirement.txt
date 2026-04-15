@@ -12,4 +12,11 @@ pyjwt
 jose    
 sqlalchemy  
 psycopg2-binary   
-alembic    
+alembic   
+pgvector 
+sentence-transformers 
+google-generativeai
+PyPDF2
+python-docx
+google.genai
+groq
