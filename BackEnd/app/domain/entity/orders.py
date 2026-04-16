@@ -1,6 +1,6 @@
 # app/models/order.py
 from sqlalchemy import Column, Integer, String, Float, ForeignKey
-from sqlalchemy.orm import relationship
+# from sqlalchemy.orm import relationship - for feature use added
 from app.db.base import Base
 from app.domain.entity.domainobject import DomainObject
 
