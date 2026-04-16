@@ -238,3 +238,6 @@ Thumbs.db
 .pylintrc
 run.bat
 runenv.bat
+migrations/env.py
+migrations/versions/
+migrations/

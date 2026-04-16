@@ -1,3 +1,4 @@
+
 fastapi
 uvicorn
 pandas
@@ -6,3 +7,16 @@ pandasql
 python-multipart
 requests
 fastapi-cache2
+pydantic-settings 
+pyjwt 
+jose    
+sqlalchemy  
+psycopg2-binary   
+alembic   
+pgvector 
+sentence-transformers 
+google-generativeai
+PyPDF2
+python-docx
+google.genai
+groq
