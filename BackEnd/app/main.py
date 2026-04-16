@@ -4,8 +4,8 @@ import logging
 
 from app.core.config import settings
 from app.core.security import verify_security_config
-# from app.routers import file_router, document_router
-#from app.routers importquery_router
+from app.routers import file_router, document_router
+from app.routers import query_router
 
 
 # Configure logging
@@ -28,8 +28,9 @@ app.add_middleware(
 )
 
 # Register 
-# app.include_router(file_router.router)
-# app.include_router(document_router.router)
+app.include_router(file_router.router)
+app.include_router(document_router.router)
+app.include_router(query_router.router)
 
 @app.get("/")
 def home():
