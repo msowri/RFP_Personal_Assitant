@@ -91,31 +91,31 @@ class DocumentRepository:
             raise e
         
 #############################Query related methods#############################
-    # def search_similar_chunks(
-    #     self,
-    #     db: Session,
-    #     query_embedding: list,
-    #     top_k: int = 5,
-    #     document_id: Optional[str] = None
-    # ):
-    #     sql = """
-    #     SELECT chunk_text
-    #     FROM document_chunks
-    #     WHERE (:document_id IS NULL OR document_id = :document_id)
-    #     ORDER BY embedding <-> CAST(:embedding AS vector)
-    #     LIMIT :top_k
-    #     """
+    def search_similar_chunks(
+        self,
+        db: Session,
+        query_embedding: list,
+        top_k: int = 5,
+        document_id: Optional[str] = None
+    ):
+        sql = """
+        SELECT chunk_text
+        FROM document_chunks
+        WHERE (:document_id IS NULL OR document_id = :document_id)
+        ORDER BY embedding <-> CAST(:embedding AS vector)
+        LIMIT :top_k
+        """
 
-    #     result = db.execute(
-    #         text(sql),
-    #         {
-    #             "embedding": query_embedding,
-    #             "top_k": top_k,
-    #             "document_id": document_id
-    #         }
-    #     )
+        result = db.execute(
+            text(sql),
+            {
+                "embedding": query_embedding,
+                "top_k": top_k,
+                "document_id": document_id
+            }
+        )
 
-    #     return [row[0] for row in result.fetchall()]
+        return [row[0] for row in result.fetchall()]
        
 
                             

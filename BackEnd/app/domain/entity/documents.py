@@ -30,4 +30,4 @@ class DocumentChunk(Base, DomainObject):
     chunk_index = Column(Integer, nullable=False)
     
     # Relationship back to document
-    # document = relationship("Document", back_populates="chunks")  # Not required now, but can be added if needed for reverse access
+    document = relationship("Document", back_populates="chunks")  
