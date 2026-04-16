@@ -18,3 +18,5 @@ sentence-transformers
 google-generativeai
 PyPDF2
 python-docx
+google.genai
+groq
