@@ -35,7 +35,7 @@ class DocumentRepository:
         except Exception as e:
             raise e
 
-    def get_all_documents(self, db: Session, limit: int = 10, offset: int = 0):        
+    def get_all_documents(self, db: Session, limit: int = 10, offset: int = 0):         # future list use only added
         try:
             return db.query(Document).limit(limit).offset(offset).all()
         except Exception as e:
@@ -90,7 +90,8 @@ class DocumentRepository:
         except Exception as e:
             raise e
         
-#############################Query related methods#############################
+
+
     def search_similar_chunks(
         self,
         db: Session,

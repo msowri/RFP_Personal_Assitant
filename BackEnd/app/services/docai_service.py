@@ -1,14 +1,14 @@
-from google import genai                       
+from groq import Groq
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY") #expired issue in Gemini API key, need to check and update
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+print(f"GROQ_API_KEY: {GROQ_API_KEY}")  # for debugging, remove in production
 class DocAIService:
     def __init__(self):
-        self.client = genai.Client(api_key=GEMINI_API_KEY)  # 
+        self.client = Groq(api_key=GROQ_API_KEY)
 
     async def ask_with_context(self, context: str, question: str) -> str:
         prompt = f"""
@@ -22,8 +22,14 @@ class DocAIService:
                     Question:
                     {question}
                     """
-        response = await self.client.aio.models.generate_content(
-            model="gemini-2.0-flash",          
-            contents=prompt
+
+        response = self.client.chat.completions.create(
+            model="llama-3.3-70b-versatile",  # or "mixtral-8x7b-32768", "gemma2-9b-it"
+            messages=[
+                {"role": "user", "content": prompt}
+            ],
+            temperature=0.2,
+            max_tokens=1024,
         )
-        return response.text # type: ignore
+
+        return response.choices[0].message.content  # type: ignore
