@@ -1,7 +1,7 @@
 <template>
 
   <div class="home">
-
+       <FileUpload />
     <!-- <div data-msg> {{ message }}</div> -->
     <!-- <Header /> -->
 
@@ -26,6 +26,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import FileUpload from '../components/FileUpload.vue'
 const message = ref('Hello, Vue 3 with TypeScript!')
 
 //  import Header from './Header.vue'
