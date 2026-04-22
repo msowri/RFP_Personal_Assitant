@@ -21,7 +21,7 @@ async def query_documents(
             db=db,
             question=request.query,
             top_k=request.top_k, # type: ignore
-            # document_id=request.document_id
+            document_id = request.document_id # type: ignore
         )
 
         return QueryResponseDto(
