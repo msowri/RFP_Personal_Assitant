@@ -1,12 +1,18 @@
-
-def chunk_text(text: str, chunk_size=500, overlap=50): # overlap added to and from continue
+def chunk_sections(sections, chunk_size=500, overlap=50):
     chunks = []
-    start = 0
 
-    while start < len(text):
-        end = start + chunk_size
-        chunk = text[start:end]
-        chunks.append(chunk)
-        start += chunk_size - overlap
+    for section in sections:
+        text = section["content"]
+
+        start = 0
+        while start < len(text):
+            chunk_text = text[start:start + chunk_size]
+
+            chunks.append({
+                "title": section["title"],
+                "text": chunk_text
+            })
+
+            start += chunk_size - overlap
 
     return chunks
