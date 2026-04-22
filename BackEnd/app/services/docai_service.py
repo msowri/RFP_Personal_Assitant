@@ -5,7 +5,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-print(f"GROQ_API_KEY: {GROQ_API_KEY}")  # for debugging, remove in production
+AI_MODEL = os.getenv("AI_MODEL")  
+print(f"GROQ_API_KEY: {GROQ_API_KEY}")  
+print(f"AI_MODEL: {AI_MODEL}")  
 class DocAIService:
     def __init__(self):
         self.client = Groq(api_key=GROQ_API_KEY)
@@ -24,7 +26,7 @@ class DocAIService:
                     """
 
         response = self.client.chat.completions.create(
-            model="llama-3.3-70b-versatile",  # or "mixtral-8x7b-32768", "gemma2-9b-it"
+            model= str(AI_MODEL),  # or "mixtral-8x7b-32768", "gemma2-9b-it"
             messages=[
                 {"role": "user", "content": prompt}
             ],
