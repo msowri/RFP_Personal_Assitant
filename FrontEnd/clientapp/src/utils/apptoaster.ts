@@ -1,8 +1,10 @@
-export function showToast(message: string, type: 'success' | 'error' = 'error') {
+export function showToast(message: string, type: 'success' | 'error' | 'info' = 'error') {
 
   const bgClass = type === 'success'
     ? 'text-bg-success'
-    : 'text-bg-danger'
+    : type === 'info'
+      ? 'text-bg-primary'
+      : 'text-bg-danger'
 
   const toast = document.createElement('div')
   toast.className = `toast align-items-center ${bgClass} show position-fixed bottom-0 end-0 m-3`

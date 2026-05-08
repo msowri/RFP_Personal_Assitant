@@ -4,9 +4,19 @@ import logging
 
 from app.core.config import settings
 from app.core.security import verify_security_config
+from app.db.base import Base
+from app.db.session import engine
+import app.domain.entity.documents
+import app.domain.entity.draft
+import app.domain.entity.question
 from app.routers import file_router, document_router
 from app.routers import query_router
 from app.routers import draft_router
+from app.routers import question_router
+from app.routers import export_router
+
+
+Base.metadata.create_all(bind=engine)
 
 
 
@@ -34,6 +44,8 @@ app.include_router(file_router.router)
 app.include_router(document_router.router)
 app.include_router(query_router.router)
 app.include_router(draft_router.router)
+app.include_router(question_router.router)
+app.include_router(export_router.router)
 
 @app.get("/")
 def home():
@@ -44,9 +56,9 @@ def home():
         "redoc": "/redoc"
     }
 
-# @app.get("/health")
-# def health_check():
-#     return {"status": "healthy", "app": settings.APP_NAME}
+@app.get("/health")
+def health_check():
+    return {"status": "healthy", "app": settings.APP_NAME}
 
 @app.get("/test_security_config")
 def test_security_config():

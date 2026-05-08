@@ -19,11 +19,21 @@ async def list_documents(
     """List all documents"""
     try:
         documents = doc_service.get_all_documents(db, limit, offset)
-        logger.info(f"test messaage")
+        serialized = [
+            {
+                "id": doc.id,
+                "file_name": doc.file_name,
+                "file_type": doc.file_type,
+                "file_size": doc.file_size,
+                "created_on": str(doc.created_on),
+                "updated_on": str(doc.updated_on)
+            }
+            for doc in documents
+        ]
         return {
             "success": True,
-            "documents": documents,
-            "total": len(documents),
+            "documents": serialized,
+            "total": len(serialized),
             "limit": limit,
             "offset": offset
         }
@@ -34,7 +44,7 @@ async def list_documents(
 
 @router.get("/{document_id}")
 async def get_document(
-    document_id: str,
+    document_id: int,
     db: Session = Depends(get_db)
 ):
     """Get document details by ID"""
@@ -43,7 +53,14 @@ async def get_document(
         if not result:
             raise HTTPException(status_code=404, detail="Document not found")
         
-        return result
+        return {
+            "id": result.id,
+            "file_name": result.file_name,
+            "file_type": result.file_type,
+            "file_size": result.file_size,
+            "created_on": str(result.created_on),
+            "updated_on": str(result.updated_on)
+        }
     except HTTPException as e:
         raise e
     except Exception as e:
@@ -53,7 +70,7 @@ async def get_document(
 
 @router.get("/{document_id}/chunks")
 async def get_document_chunks(
-    document_id: str,
+    document_id: int,
     limit: int = 10,
     offset: int = 0,
     db: Session = Depends(get_db)
@@ -61,11 +78,21 @@ async def get_document_chunks(
     """Get chunks for a document"""
     try:
         chunks = doc_service.get_chunks_by_document(db, document_id, limit, offset)
+        serialized_chunks = [
+            {
+                "id": chunk.id,
+                "document_id": chunk.document_id,
+                "chunk_text": chunk.chunk_text,
+                "chunk_index": chunk.chunk_index,
+                "created_on": str(chunk.created_on)
+            }
+            for chunk in chunks
+        ]
         return {
             "success": True,
             "document_id": document_id,
-            "chunks": chunks,
-            "total": len(chunks),
+            "chunks": serialized_chunks,
+            "total": len(serialized_chunks),
             "limit": limit,
             "offset": offset
         }
@@ -76,7 +103,7 @@ async def get_document_chunks(
 
 @router.delete("/{document_id}")
 async def delete_document(
-    document_id: str,
+    document_id: int,
     db: Session = Depends(get_db)
 ):
    

@@ -28,3 +28,10 @@ def delete_draft(db: Session, draft_id: int):
     db.delete(draft)
     db.commit()
     return True
+
+def get_drafts_by_document(db: Session, document_id: int):
+    return db.query(Draft).filter(Draft.document_id == document_id).all()
+
+
+def list_drafts(db: Session, limit: int = 100, offset: int = 0):
+    return db.query(Draft).order_by(Draft.created_on.desc()).limit(limit).offset(offset).all()

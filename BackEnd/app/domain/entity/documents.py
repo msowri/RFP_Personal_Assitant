@@ -1,4 +1,4 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, LargeBinary
+from sqlalchemy import Column, ForeignKey, Integer, String, LargeBinary, Text
 from sqlalchemy.orm import relationship
 from pgvector.sqlalchemy import Vector
 
@@ -17,6 +17,12 @@ class Document(Base, DomainObject):
     
     # Relationship to document chunks
     chunks = relationship("DocumentChunk", back_populates="document", cascade="all, delete-orphan")
+    
+    # Relationship to drafts
+    drafts = relationship("Draft", back_populates="document", cascade="all, delete-orphan")
+    
+    # Relationship to extracted questions
+    questions = relationship("Question", back_populates="document", cascade="all, delete-orphan")
 
 
 class DocumentChunk(Base, DomainObject):
@@ -24,9 +30,8 @@ class DocumentChunk(Base, DomainObject):
     __tablename__ = "document_chunks"
     
     document_id = Column(Integer, ForeignKey("documents.id"), nullable=False)
-    chunk_text = Column(String, nullable=False)
-    #embedding = Column(Vector(384))  # MiniLM-L6-v2 produces 384-dimensional embeddings
-    embedding = Column(Vector(768))  # Gemini
+    chunk_text = Column(Text, nullable=False)
+    embedding = Column(Vector(768))
     chunk_index = Column(Integer, nullable=False)
     
     # Relationship back to document
