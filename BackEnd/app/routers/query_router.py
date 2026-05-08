@@ -25,7 +25,7 @@ async def query_documents(
         )
 
         return QueryResponseDto(
-            answer=request.query  ,           
+            answer=result["answer"],           
             relevant_chunks=result["chunks"]
         )
 

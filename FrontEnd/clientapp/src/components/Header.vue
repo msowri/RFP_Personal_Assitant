@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="container">
-      <h2 class="logo">RFP</h2>
+      <!-- <h4 class="logo">RFP</h4> -->
 
       <nav>
         <ul>

@@ -24,3 +24,35 @@ class DraftService:
 
     def delete_draft(self, db: Session, draft_id: int) -> bool:
         return delete_draft(db, draft_id)
+    
+    def list_drafts(self, db: Session, limit: int = 100, offset: int = 0) -> list:
+        from app.repositories.draft_repository import list_drafts
+        drafts = list_drafts(db, limit=limit, offset=offset)
+        return [
+            {
+                'id': draft.id,
+                'question': draft.question,
+                'answer': draft.answer,
+                'document_id': draft.document_id,
+                'is_edited': draft.is_edited,
+                'created_on': str(draft.created_on),
+                'updated_on': str(draft.updated_on)
+            }
+            for draft in drafts
+        ]
+
+    def get_drafts_by_document(self, db: Session, document_id: int) -> list:
+        """Get all drafts for a specific document"""
+        from app.repositories.draft_repository import get_drafts_by_document
+        drafts = get_drafts_by_document(db, document_id)
+        return [
+            {
+                'id': draft.id,
+                'question': draft.question,
+                'answer': draft.answer,
+                'is_edited': draft.is_edited,
+                'created_on': str(draft.created_on),
+                'updated_on': str(draft.updated_on)
+            }
+            for draft in drafts
+        ]

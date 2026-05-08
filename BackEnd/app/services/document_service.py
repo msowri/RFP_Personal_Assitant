@@ -161,3 +161,18 @@ class DocumentService:
             logger.exception("Error processing text")
             db.rollback()
             raise
+
+    def get_document(self, db: Session, document_id: int):
+        return self.repo.get_document(db, document_id)
+
+    def get_all_documents(self, db: Session, limit: int = 10, offset: int = 0):
+        return self.repo.get_all_documents(db, limit, offset)
+
+    def get_chunks_by_document(self, db: Session, document_id: int, limit: int = 10, offset: int = 0):
+        return self.repo.get_chunks_by_document(db, document_id, limit, offset)
+
+    def delete_document(self, db: Session, document_id: int):
+        return self.repo.delete_document(db, document_id)
+
+    def get_document_file_metadata(self, db: Session, document_id: int):
+        return self.repo.get_document_file_metadata(db, document_id)

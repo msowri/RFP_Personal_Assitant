@@ -13,6 +13,10 @@ def create_draft(draft_data: DraftCreate, db: Session = Depends(get_db)):
     return service.create_draft(db, draft_data) 
 
 
+@router.get("/", response_model=list[DraftResponse])
+def list_drafts(limit: int = 100, offset: int = 0, db: Session = Depends(get_db)):
+    return service.list_drafts(db, limit=limit, offset=offset)
+
 @router.get("/{draft_id}", response_model=DraftResponse)
 def read_draft(draft_id: int, db: Session = Depends(get_db)):    
     return service.get_draft(db, draft_id)
